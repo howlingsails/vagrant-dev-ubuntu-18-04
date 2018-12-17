@@ -1,4 +1,4 @@
-# Setup EHR Belligo Development Test Environment
+# Post Installation Setup
 
 ## App Setup
 
