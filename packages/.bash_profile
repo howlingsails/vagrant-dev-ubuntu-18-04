@@ -27,8 +27,6 @@ THEIP=`echo -e  "[ ${THEIP_TMP//[$'\t\r\n']} ]"`
 source ~/.bash_prompt
 PROMPT_COMMAND=set_bash_prompt
 
-
-
 clear
 
 echo -e "${BBlue}"

@@ -91,6 +91,7 @@ Vagrant.configure("2") do |config|
       sudo chkconfig vboxadd on
       sudo systemctl enable vboxadd.service
 
+      #https://askubuntu.com/questions/732409/how-to-avoid-apt-get-y-dist-upgrade-being-interactive-with-waagent
       echo "**************************************"
       echo " apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade "
       echo "**************************************"
