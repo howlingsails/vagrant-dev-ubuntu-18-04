@@ -8,7 +8,7 @@ A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in Virtual
 2. Install Vagrant [https://www.vagrantup.com/downloads.html]
 3. Start Virtual Box
 4. Open a command prompt (windows) / terminal (mac)
-5. Install git
+5. Install git [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git]
 6. Clone this repo
 7. Switch into this directory
 8. From a terminal run "vagrant up"
