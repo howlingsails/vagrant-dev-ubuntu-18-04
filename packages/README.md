@@ -22,3 +22,12 @@ For terminal access to the command line I use Terminator which we need to hook u
 
 
 
+### Full Distro Upgrade after Ready.
+
+https://askubuntu.com/questions/732409/how-to-avoid-apt-get-y-dist-upgrade-being-interactive-with-waagent
+
+```bash
+apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade "
+```
+
+

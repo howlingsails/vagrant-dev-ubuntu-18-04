@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
@@ -53,12 +55,16 @@ alias sshkey='cat ~/.ssh/id_rsa.pub'
 alias bsh='vim ~/.bash_profile'
 alias src='source ~/.bash_profile'
 alias sssh='ssh -i ~/.ssh/id_rsa'
-alias ls='ls -Ca'			    # Preferred ‘ls’ implementation
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FClAhp'                       # Preferred 'ls' implementation
-cd() { builtin cd "$@"; ls -Cp; }               # Always list directory contents upon 'cd'
+# Use SSH with id_rsa file
+
+alias ls='ls -Ca'			   
+alias cp='cp -iv'                         
+alias mv='mv -iv'                           
+alias mkdir='mkdir -pv'                     
+alias ll='ls -FClAhp'                       
+cd() { builtin cd "$@"; ls -Cp; }              
+# Always list directory contents upon 'cd'
+
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
@@ -67,13 +73,28 @@ alias .3='cd ../../../'                     # Go back 3 directory levels
 alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
-# alias edit='subl'                           # edit:         Opens any file in sublime editor
-alias ~="cd ~"                              # ~:            Go Home
-alias c='clear'                             # c:            Clear terminal display
-# alias which='type -all'                     # which:        Find executables
-alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-alias show_options='shopt'                  # Show_options: display bash options settings
-alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
-mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+
+alias ~="cd ~"                              
+# ~:            Go Home
+
+alias c='clear'                             
+# c:            Clear #terminal display
+
+alias which='type -all'                     
+# which:        Find #executables
+
+alias path='echo -e ${PATH//:/\\n}'         
+# path:         Echo all #executable Paths
+
+alias show_options='shopt'                  
+# Show_options: display #bash options settings
+
+alias fix_stty='stty sane'                  
+# fix_stty:     Restore #terminal settings when screwed up
+
+alias cic='set completion-ignore-case On'   
+# cic:          Make #tab-completion case-insensitive
+
+mcd () { mkdir -p "$1" && cd "$1"; }        
+# mcd:          Makes #new Dir and jumps inside
 
