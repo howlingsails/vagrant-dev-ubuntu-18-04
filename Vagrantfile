@@ -20,14 +20,14 @@ Vagrant.configure("2") do |config|
     # Customize the amount of memory on the VM:
     vb.memory = "4096"
     vb.cpus = 4
-#    vb.customize "pre-boot", [
-#       "storageattach", :id,
-#       "--storagectl", "IDE",
-#       "--port", "1",
-#       "--device", "0",
-#       "--type", "dvddrive",
-#       "--medium", "emptydrive",
-#     ]
+    vb.customize "pre-boot", [
+       "storageattach", :id,
+       "--storagectl", "IDE Controller",
+       "--port", "1",
+       "--device", "0",
+       "--type", "dvddrive",
+       "--medium", "emptydrive",
+     ]
      vb.customize ["modifyvm", :id, "--clipboard",   "bidirectional"]
      vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
      #https://stackoverflow.com/questions/24231620/how-to-set-vagrant-virtualbox-video-memory
@@ -46,20 +46,28 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "shell", inline: <<-SHELL
 
+        #ensure non-interactive updates
+        export DEBIAN_FRONTEND=noninteractive 
+
         
+        echo "****************************************"
+        echo " Howling Sails Development Ubuntu 18.04"
+        echo "****************************************"
+  
+        
+        echo "**************************************"
+        echo "**************************************"
+        echo "COPY sources.list"
+        cp /packages/sources.list /etc/apt/sources.list
+        echo "**************************************"
+        echo "**************************************"
+
         echo "**************************************"
         echo " apt-get Update"
         echo "**************************************"
-        apt-get install python git
-        git clone https://github.com/jblakeman/apt-select
-        python apt-select/setup.py install
-        apt-select --country US -t 5 --choose --min-status one-week-behind
-        #sudo sed -i -e 's%http://archive.ubuntu.com/ubuntu%mirror://mirrors.ubuntu.com/mirrors.txt%' -e 's/^deb-src/#deb-src/' /etc/apt/sources.list
-        #update repo info
-        apt-get update
+
+        apt-get -y -q update
         
-        #ensure non-interactive updates
-        export DEBIAN_FRONTEND=noninteractive 
 
         #echo "**************************************"
         #echo " virtualbox-guest-dkms"
@@ -68,9 +76,9 @@ Vagrant.configure("2") do |config|
         #sudo apt-get -y install virtualbox-guest-dkms
         #sudo apt-get -y install linux-headers-virtual  
 
-        echo "**************************************"
-        echo " VBoxGuestAdditions"
-        echo "**************************************"
+      echo "**************************************"
+      echo " VBoxGuestAdditions"
+      echo "**************************************"
 
       #Install VBox Additions
       cd /opt
@@ -79,11 +87,17 @@ Vagrant.configure("2") do |config|
       sudo mount VBoxGuestAdditions_5.2.22.iso -o loop /vboxsf
       
       cd /mnt
+      echo "**************************************"
       echo "Tool mnt directory"
+      echo "**************************************"
       ls /mnt
+      echo "**************************************"
       echo "Trying to install guest additions"
+      echo "**************************************"
       sudo sh VBoxLinuxAdditions.run --nox11
+      echo "**************************************"
       echo "Done Run VBOX Additions"
+      echo "**************************************"
       cd /opt
       sudo rm *.iso
       sudo /etc/init.d/vboxadd setup
@@ -91,11 +105,32 @@ Vagrant.configure("2") do |config|
       sudo chkconfig vboxadd on
       sudo systemctl enable vboxadd.service
 
-      #https://askubuntu.com/questions/732409/how-to-avoid-apt-get-y-dist-upgrade-being-interactive-with-waagent
+
       echo "**************************************"
-      echo " apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade "
+      echo "Installing profiles"
+      echo "**************************************"
+        
+      ls -altr /packages
+      echo "**************************************"
+      echo "**************************************"
+      cp /packages/.bash* /home/vagrant/
+      chown vagrant:vagrant /home/vagrant/.bash*
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_aliases
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_prompt
+
+      chown vagrant:vagrant /home/vagrant/.bash*
+      echo "**************************************"
+      echo "**************************************"
+      ls -altr /home/vagrant/
+      echo "**************************************"
       echo "**************************************"
 
+      # Get Rid of Window CR/LF issue
+      
+
+      cp /packages/README.md /home/vagrant/        
+      chown -R vagrant.vagrant /home/vagrant
 
       
       
@@ -107,11 +142,12 @@ Vagrant.configure("2") do |config|
       
       #java8
       add-apt-repository -y ppa:webupd8team/java
-      apt update
+      apt -q update
       
       #java8 ensure non-interactive
-      
+      echo "**************************************"      
       echo "Uncomment for Installing Oracle Java 8 Non-Interactive. Please look at the license and agree before uncommenting"
+      echo "**************************************"
 
       #echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
       #echo debconf shared/accepted-oracle-license-v1-1 seen true |  debconf-set-selections	
@@ -122,7 +158,7 @@ Vagrant.configure("2") do |config|
       echo " maven git etc. "
       echo "**************************************"
 
-        apt-get install -y maven git git-flow git-cola meld subversion eclipse eclipse-egit testng chromium-browser chromium-chromedriver ant docker mc joe
+        apt-get install -y -q maven git eclipse  testng chromium-browser chromium-chromedriver
         
       #HOME
       cd /home/vagrant
@@ -133,20 +169,11 @@ Vagrant.configure("2") do |config|
       sudo wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.1.tar.gz 
       sudo tar xf ideaIC-2018.3.1.tar.gz -C /opt
 
-      echo "**************************************"
-      echo "Installing profiles"
-      echo "**************************************"
-        
-      cp /packages/.bash* /home/vagrant/
-      chown vagrant:vagrant .bash*
-
-      cp /packages/README.md /home/vagrant/        
-      chown -R vagrant.vagrant /home/vagrant
         
       echo "**************************************"
       echo " Installing terminator terminal "
       echo "**************************************"
-      sudo apt-get -y install terminator
+      sudo apt-get -y -q install terminator
       
       echo "**************************************"
       echo "**************************************"
@@ -156,7 +183,7 @@ Vagrant.configure("2") do |config|
       
       wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-      sudo apt -y install code
+      sudo apt -y -q install code
 
       echo "**************************************"
       echo "**************************************"
