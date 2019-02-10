@@ -146,7 +146,7 @@ function set_bash_prompt () {
   #echo "UTCTIME=${UTCTIME}"
 
   # Set the bash prompt variable.
-  PS1="${JOBS}\n${BRed}\342\226\210${BYellow}\342\226\210${BBlue} \u@${Purple}\h ${WHT} | ${Cyan}${THEIP}${WHT} | ${BCyan} \d \@ (${UTCTIME} UTC)   \n${BYellow}\342\226\210${BRed}\342\226\210${BLUE} \w${BRN}${BRANCH}\[\033[00m\]\n ${BGreen}$ ${WHT}"
+  PS1="${JOBS}\n${BRed}\342\226\210${BYellow}\342\226\210${BBlue} \u@${Purple}\h ${WHT} | ${Cyan}${THEIP}${WHT} | ${BCyan} \d \@ (${UTCTIME} UTC)   \n${BYellow}\342\226\210${BRed}\342\226\210${BGreen} \w${BRN}${BRANCH}\[\033[00m\]\n ${BGreen}$ ${WHT}"
   export PS1
 
 }

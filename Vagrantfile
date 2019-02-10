@@ -13,9 +13,11 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "jvautier/ubuntu-18.04-desktop"
+  config.vm.hostname = "howlingstails"
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.name = "dev_ubuntu_box"
+
     vb.gui = true
     # Customize the amount of memory on the VM:
     vb.memory = "4096"
@@ -31,8 +33,8 @@ Vagrant.configure("2") do |config|
      vb.customize ["modifyvm", :id, "--clipboard",   "bidirectional"]
      vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
      #https://stackoverflow.com/questions/24231620/how-to-set-vagrant-virtualbox-video-memory
-     vb.customize ["modifyvm", :id, "--vram", "64"]
-     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]	
+     vb.customize ["modifyvm", :id, "--vram", "128"]
+     vb.customize ["modifyvm", :id, "--accelerate3d", "off"]	
      vb.customize ["modifyvm", :id, "--accelerate2dvideo", "off"]	
      #vb.customize ["modifyvm", :id, "--monitorcount ", "2"]
      vb.customize ["modifyvm", :id, "--name", "howling-sails-dev"]
@@ -115,10 +117,6 @@ Vagrant.configure("2") do |config|
       echo "**************************************"
       cp /packages/.bash* /home/vagrant/
       chown vagrant:vagrant /home/vagrant/.bash*
-      sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
-      sudo sed -i 's/\r$//' /home/vagrant/.bash_aliases
-      sudo sed -i 's/\r$//' /home/vagrant/.bash_prompt
-
       chown vagrant:vagrant /home/vagrant/.bash*
       echo "**************************************"
       echo "**************************************"
@@ -126,10 +124,20 @@ Vagrant.configure("2") do |config|
       echo "**************************************"
       echo "**************************************"
 
-      # Get Rid of Window CR/LF issue
-      
+      # Faster Scroll wheel on mouse
+      cp /packages/.imwheelrc /home/vagrant/
 
+      # Note to user
       cp /packages/README.md /home/vagrant/        
+
+      # Get Rid of Window CR/LF issue
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_aliases
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_prompt
+      sudo sed -i 's/\r$//' /home/vagrant/.imwheelrc
+      sudo sed -i 's/\r$//' /home/vagrant/README.md
+
+      
       chown -R vagrant.vagrant /home/vagrant
 
       
@@ -158,7 +166,7 @@ Vagrant.configure("2") do |config|
       echo " maven git etc. "
       echo "**************************************"
 
-        apt-get install -y -q maven git eclipse  testng chromium-browser chromium-chromedriver
+        apt-get install -y -q maven git eclipse  testng chromium-browser chromium-chromedriver imwheel
         
       #HOME
       cd /home/vagrant
@@ -201,6 +209,30 @@ Vagrant.configure("2") do |config|
 
       # Create my default development file location      
       mkdir ~/dev
+
+      #SSH Stuff
+      echo "******************************"
+      echo "SSH Stuff"
+      echo "******************************"
+      ssh-keygen -t rsa -b 8196 -C "vag-dev-vm-$HOSTNAME" -N "vagrant" -f ~/.ssh/id_rsa 
+      eval "$(ssh-agent -s)"
+      ssh-add -K ~/.ssh/id_rsa    
+
+      eval "$(ssh-agent -s)"
+      ssh-add -K ~/.ssh/id_rsa
+
+
+
+      echo "******************************"
+      echo "Public Key"
+      echo "******************************"
+      cat ~/.ssh/id_rsa.pub
+      echo "******************************"
+
+            # Install chromium
+            sudo yum --enablerepo=extras install -y epel-release
+            sudo yum install -y chromium
+
 
       echo "*********************************************"
       echo "*********************************************"

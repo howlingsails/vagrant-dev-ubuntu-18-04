@@ -18,16 +18,12 @@ For terminal access to the command line I use Terminator which we need to hook u
 
 1. Open Terminator
 2. cd /opt/idea-IC-183.4588.61/bin
-4. ./idea.sh
+3. ./idea.sh
 
+### Full Distro Upgrade after Ready
 
-
-### Full Distro Upgrade after Ready.
-
-https://askubuntu.com/questions/732409/how-to-avoid-apt-get-y-dist-upgrade-being-interactive-with-waagent
+<https://askubuntu.com/questions/732409/how-to-avoid-apt-get-y-dist-upgrade-being-interactive-with-waagent>
 
 ```bash
 apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade "
 ```
-
-
