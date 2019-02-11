@@ -218,9 +218,6 @@ Vagrant.configure("2") do |config|
       eval "$(ssh-agent -s)"
       ssh-add -K ~/.ssh/id_rsa    
 
-      eval "$(ssh-agent -s)"
-      ssh-add -K ~/.ssh/id_rsa
-
 
 
       echo "******************************"
@@ -228,10 +225,6 @@ Vagrant.configure("2") do |config|
       echo "******************************"
       cat ~/.ssh/id_rsa.pub
       echo "******************************"
-
-            # Install chromium
-            sudo yum --enablerepo=extras install -y epel-release
-            sudo yum install -y chromium
 
 
       echo "*********************************************"
