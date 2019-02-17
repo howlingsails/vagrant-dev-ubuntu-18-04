@@ -47,7 +47,7 @@ echo "                       |_____  ||       ||   | |   |___ |_____  |";
 echo "                        _____| ||   _   ||   | |       | _____| |";
 echo "                       |_______||__| |__||___| |_______||_______|";
 echo ""
-echo -e "${BGreen}Useful Command: sshkey, bsh, src, sssh, .2 .3 .4, c, path"
+echo -e "${BGreen}Useful Command: mdviewer, sshkey, bsh, src, sssh, .2 .3 .4, c, path"
 echo ""
 echo -e "${BGWhite}"
 
@@ -58,6 +58,7 @@ alias sssh='ssh -i ~/.ssh/id_rsa'
 # Use SSH with id_rsa file
 
 alias ls='ls -Ca'			   
+alias lss='ls -C'			   
 alias cp='cp -iv'                         
 alias mv='mv -iv'                           
 alias mkdir='mkdir -pv'                     
@@ -98,3 +99,6 @@ alias cic='set completion-ignore-case On'
 mcd () { mkdir -p "$1" && cd "$1"; }        
 # mcd:          Makes #new Dir and jumps inside
 
+function mdviewer(){
+  pandoc $* | lynx -stdin
+}

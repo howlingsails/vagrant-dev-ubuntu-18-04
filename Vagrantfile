@@ -112,12 +112,7 @@ Vagrant.configure("2") do |config|
       echo "Installing profiles"
       echo "**************************************"
         
-      ls -altr /packages
-      echo "**************************************"
-      echo "**************************************"
       cp /packages/.bash* /home/vagrant/
-      chown vagrant:vagrant /home/vagrant/.bash*
-      chown vagrant:vagrant /home/vagrant/.bash*
       echo "**************************************"
       echo "**************************************"
       ls -altr /home/vagrant/
@@ -128,7 +123,8 @@ Vagrant.configure("2") do |config|
       cp /packages/.imwheelrc /home/vagrant/
 
       # Note to user
-      cp /packages/README.md /home/vagrant/        
+      cp /packages/README.md /home/vagrant/ 
+      cp /packages/.setupUser.sh /home/vagrant/       
 
       # Get Rid of Window CR/LF issue
       sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
@@ -137,8 +133,14 @@ Vagrant.configure("2") do |config|
       sudo sed -i 's/\r$//' /home/vagrant/.imwheelrc
       sudo sed -i 's/\r$//' /home/vagrant/README.md
 
-      
+      #Set Permission on user files
+      chown vagrant:vagrant /home/vagrant/.*
+      chown vagrant:vagrant /home/vagrant/README.md
+      chown vagrant:vagrant /home/vagrant/README.md
       chown -R vagrant.vagrant /home/vagrant
+
+      #Set Execute on UserSetup
+      chmod 700 /home/vagrant/.setupUser.sh
 
       
       
@@ -167,7 +169,8 @@ Vagrant.configure("2") do |config|
       echo "**************************************"
 
         apt-get install -y -q maven git eclipse  testng chromium-browser chromium-chromedriver imwheel
-        
+        apt-get install -y -q pandoc lynx
+
       #HOME
       cd /home/vagrant
       echo "**************************************"
@@ -200,31 +203,8 @@ Vagrant.configure("2") do |config|
       #sudo apt-get -y install dkms
       #dkms autoinstall
       
-      # Generate SSH Key #TODO Change the password from vagrant on the -N option
-      ssh-keygen -t rsa -b 8198 -C "dev-ubuntu-box" -N "vagrant" -f ~/.ssh/id_rsa 
-      eval $(ssh-agent -s)
-      echo "vagrant" | ssh-add ~/.ssh/id_rsa
-
-      sshPubKey=`cat ~/.ssh/id_rsa.pub`
-
-      # Create my default development file location      
-      mkdir ~/dev
-
-      #SSH Stuff
-      echo "******************************"
-      echo "SSH Stuff"
-      echo "******************************"
-      ssh-keygen -t rsa -b 8196 -C "vag-dev-vm-$HOSTNAME" -N "vagrant" -f ~/.ssh/id_rsa 
-      eval "$(ssh-agent -s)"
-      ssh-add -K ~/.ssh/id_rsa    
 
 
-
-      echo "******************************"
-      echo "Public Key"
-      echo "******************************"
-      cat ~/.ssh/id_rsa.pub
-      echo "******************************"
 
 
       echo "*********************************************"

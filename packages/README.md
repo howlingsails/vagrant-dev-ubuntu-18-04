@@ -27,3 +27,9 @@ For terminal access to the command line I use Terminator which we need to hook u
 ```bash
 apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade "
 ```
+
+### Setup User
+
+```bash
+./.setupUser.sh 
+```
