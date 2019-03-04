@@ -57,7 +57,7 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state} (${branch})${remote}${COLOR_NONE} "
+  BRANCH="${state} (${branch})${remote}${COLOR_NONE} "
 }
 
 # Determine the branch/state information for this Mercurial repository.

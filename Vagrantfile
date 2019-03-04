@@ -171,6 +171,12 @@ Vagrant.configure("2") do |config|
         apt-get install -y -q maven git eclipse  testng chromium-browser chromium-chromedriver imwheel
         apt-get install -y -q pandoc lynx
 
+
+        add-apt-repository ppa:cwchien/gradle
+        apt-get -q update
+        apt-get install gradle
+
+
       #HOME
       cd /home/vagrant
       echo "**************************************"

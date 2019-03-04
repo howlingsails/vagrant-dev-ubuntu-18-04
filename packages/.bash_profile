@@ -51,19 +51,22 @@ echo -e "${BGreen}Useful Command: mdviewer, sshkey, bsh, src, sssh, .2 .3 .4, c,
 echo ""
 echo -e "${BGWhite}"
 
+LS_COLORS='di=1;36:ln=35:so=32:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+export LS_COLORS
+
 alias sshkey='cat ~/.ssh/id_rsa.pub'
 alias bsh='vim ~/.bash_profile'
 alias src='source ~/.bash_profile'
 alias sssh='ssh -i ~/.ssh/id_rsa'
 # Use SSH with id_rsa file
 
-alias ls='ls -Ca'			   
-alias lss='ls -C'			   
+alias ls='ls -Ca --color'			   
+alias lss='ls -C --color'			   
 alias cp='cp -iv'                         
 alias mv='mv -iv'                           
 alias mkdir='mkdir -pv'                     
 alias ll='ls -FClAhp'                       
-cd() { builtin cd "$@"; ls -Cp; }              
+cd() { builtin cd "$@"; ls -Cp --color; }              
 # Always list directory contents upon 'cd'
 
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
