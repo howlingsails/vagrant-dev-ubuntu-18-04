@@ -1,1 +1,0 @@
-{"rsync":{"/packages":{"type":"rsync","guestpath":"/packages","hostpath":"D:/dev-training/vagrant-dev-ubuntu-18-04/packages","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"D:/dev-training/vagrant-dev-ubuntu-18-04","disabled":false,"__vagrantfile":true}}}
