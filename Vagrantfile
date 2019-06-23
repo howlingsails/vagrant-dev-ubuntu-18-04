@@ -127,15 +127,17 @@ Vagrant.configure("2") do |config|
       cp /packages/.setupUser.sh /home/vagrant/       
 
       # Get Rid of Window CR/LF issue
-      sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
       sudo sed -i 's/\r$//' /home/vagrant/.bash_aliases
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_commands
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_installs
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_logout
+      sudo sed -i 's/\r$//' /home/vagrant/.bash_profile
       sudo sed -i 's/\r$//' /home/vagrant/.bash_prompt
       sudo sed -i 's/\r$//' /home/vagrant/.imwheelrc
       sudo sed -i 's/\r$//' /home/vagrant/README.md
 
       #Set Permission on user files
       chown vagrant:vagrant /home/vagrant/.*
-      chown vagrant:vagrant /home/vagrant/README.md
       chown vagrant:vagrant /home/vagrant/README.md
       chown -R vagrant.vagrant /home/vagrant
 

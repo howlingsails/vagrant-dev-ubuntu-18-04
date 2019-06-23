@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#################################################
+#################################################
+# SOURCE CONTROL VERSION COMMAND PROMPT SUPPORT #
+#################################################
+#################################################
+
+
 # Detect whether the current directory is a git repository.
 function is_git_repository {
   git branch > /dev/null 2>&1
@@ -22,6 +29,7 @@ function is_subversion_repository {
 
 # Determine the branch/state information for this git repository.
 function set_git_branch {
+  echo "Setting Git"
   # Capture the output of the "git status" command.
   git_status="$(git status 2> /dev/null)"
 
@@ -141,12 +149,13 @@ function set_bash_prompt () {
   else
     BRANCH=''
   fi
-  #echo "BRANCH=${BRANCH}"
+  
+  
   utc_date
   #echo "UTCTIME=${UTCTIME}"
 
   # Set the bash prompt variable.
-  PS1="${JOBS}\n${BRed}\342\226\210${BYellow}\342\226\210${BBlue} \u@${Purple}\h ${WHT} | ${Cyan}${THEIP}${WHT} | ${BCyan} \d \@ (${UTCTIME} UTC)   \n${BYellow}\342\226\210${BRed}\342\226\210${BGreen} \w${BRN}${BRANCH}\[\033[00m\]\n ${BGreen}$ ${WHT}"
+  PS1="${JOBS}\n${BRed}\342\226\210${BYellow}\342\226\210${BBlue} \u@${Purple}\h ${WHT} | ${Cyan}${THEIP}${WHT} | ${BCyan} \d \@ (${UTCTIME} UTC)   \n${BYellow}\342\226\210${BRed}\342\226\210${BGreen} \w${BYellow}${BRANCH}\[\033[00m\]\n ${BGreen}$ ${BWhite}"
   export PS1
 
 }
