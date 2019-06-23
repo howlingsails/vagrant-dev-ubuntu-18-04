@@ -18,7 +18,3 @@ A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in Virtual
 12. Now switch to Virtual Box and login, User:vagrant Password: vagrant
 13. Login
 14. Open README.md on the box for following steps.
-
-
-
-

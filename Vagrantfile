@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
      vb.customize ["modifyvm", :id, "--accelerate3d", "off"]	
      vb.customize ["modifyvm", :id, "--accelerate2dvideo", "off"]	
      #vb.customize ["modifyvm", :id, "--monitorcount ", "2"]
-     vb.customize ["modifyvm", :id, "--name", "howling-sails-dev"]
+     vb.customize ["modifyvm", :id, "--name", "howling-sails-dev" + Time.now.strftime("%Y%m%d%H%M")]
     end
   
    #https://www.vagrantup.com/docs/synced-folders/basic_usage.html
