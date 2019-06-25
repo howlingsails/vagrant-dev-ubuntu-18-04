@@ -1,6 +1,7 @@
 # vagrant-dev-ubuntu-18-04
 
 A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in VirtualBox.
+[GitHub/HowlingSails](https://github.com/howlingsails/vagrant-dev-ubuntu-18-04.git)
 
 ## Directions
 
