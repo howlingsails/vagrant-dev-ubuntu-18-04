@@ -13,14 +13,11 @@ A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in Virtual
 5. Open a command prompt (windows) / terminal (mac)
 6. Clone this repo into your workspace directory
 7. Switch into this directory
-8. From a terminal run "vagrant up"
-9. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
-10. Grap coffee and watch another Howling Sails vblogs :-)
-11. One Completed you'll see "That's All Folks" message in the terminal.
-12. Now switch to Virtual Box and login, User:vagrant Password: vagrant
-13. Login
-14. Open README.md on the box for following steps.
-
-
-
-
+8. Linux/Mac terminal run `vagrant up --debug &> vagrant.log` 
+9. Windows Powershell  `vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"`
+10. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
+11. Grap coffee and watch another Howling Sails vblogs :-)
+12. One Completed you'll see "That's All Folks" message in the terminal.
+13. Now switch to Virtual Box and login, User:vagrant Password: vagrant
+14. Login
+15. Open README.md on the box for following steps.
