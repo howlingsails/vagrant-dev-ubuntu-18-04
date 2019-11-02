@@ -105,21 +105,13 @@ sudo usermod -a -G sudo vagrant
 
 ## Package VirtualBox to Vagrant Image
 
-* package file
+* package file base virtual box image into vagrant box
   
 ``` bash
 vagrant package --base Ubuntu1804-Gnome3 --output Ubuntu1804-VirtualBox6-0-6-Tools.box
 ```
 
-![Screen Shot of Virtual Box](./resources/images/virtualbox.png)
-
-* Make a base image from here, so you can retry your automation custom scripts then you need to upgrade to a new os.
-
-``` bash
-vagrant package --base Ubuntu1804-Gnome3 --output Ubuntu1804-VirtualBox6-0-6-Tools.box
-```
-
-![command output](./resources/images/packaging.png)
+![Screen Shot of Virtual Box](./resources/images/packaging.png)
 
 * Add Box to Local Vagrant
 
