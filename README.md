@@ -5,34 +5,22 @@ A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in Virtual
 
 ## Directions
 
-<<<<<<< HEAD
-1. Install Virtual Box [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
-
-![virtualBox](./resources/images/virtualbox.png)
-
-2. Install Vagrant [https://www.vagrantup.com/downloads.html](https://www.vagrantup.com/downloads.html)
-3. Start Virtual Box
-4. Open a command prompt (windows) / terminal (mac)
-5. Install git [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-6. Clone this repo
-=======
 1. Install Virtual Box [https://www.virtualbox.org/wiki/Downloads]
 2. Install Vagrant [https://www.vagrantup.com/downloads.html]
 3. Install git [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git]
 4. make a workspace director (D:\_dev) (~/-dev)
-4. Start Virtual Box
-5. Open a command prompt (windows) / terminal (mac)
-6. Clone this repo into your workspace directory
->>>>>>> 804faf1a29a023065327bf3ff7c24834f684f58c
-7. Switch into this directory
-8. Linux/Mac terminal run `vagrant up --debug &> vagrant.log` 
-9.  Windows Powershell  `vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"`
-10. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
-11. Grap coffee and watch another Howling Sails vblogs :-)
-12. One Completed you'll see "That's All Folks" message in the terminal.
-13. Now switch to Virtual Box and login, User:vagrant Password: vagrant
-14. Login
-15. Open README.md on the box for following steps.
+5. Start Virtual Box
+6. Open a command prompt (windows) / terminal (mac)
+7. Clone this repo into your workspace directory
+8. Switch into this directory
+9. Linux/Mac terminal run `vagrant up --debug &> vagrant.log`
+10. Windows Powershell  `vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"`
+11. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
+12. Grap coffee and watch another Howling Sails vblogs :-)
+13. One Completed you'll see "That's All Folks" message in the terminal.
+14. Now switch to Virtual Box and login, User:vagrant Password: vagrant
+15. Login
+16. Open README.md on the box for following steps.
 
 ![SheetShot Vagrant User Logging in to Ubuntu Desktop Clean](./resources/images/ubuntu1804.png)
 
@@ -123,21 +111,28 @@ sudo usermod -a -G sudo vagrant
 vagrant package --base Ubuntu1804-Gnome3 --output Ubuntu1804-VirtualBox6-0-6-Tools.box
 ```
 
-![Screen Shot of Virtual Box](./resources/images/vagrant2019-11-01-17-44-45.png)
+![Screen Shot of Virtual Box](./resources/images/virtualbox.png)
 
-Make a base image from here, so you can retry your automation custom scripts then you need to upgrade to a new os.
+* Make a base image from here, so you can retry your automation custom scripts then you need to upgrade to a new os.
 
-```
+``` bash
 vagrant package --base Ubuntu1804-Gnome3 --output Ubuntu1804-VirtualBox6-0-6-Tools.box
 ```
-![
-	vagrant package --base Ubuntu1804-Gnome3 --output Ubuntu1804-VirtualBox6-0-6-Tools.box
-==> Ubuntu1804-Gnome3: Exporting VM...
-==> Ubuntu1804-Gnome3: Compressing package to: D:/dev-training/basebox-howlingSails/Ubuntu1804-VirtualBox6-0-6-Tools.box
-](./resources/images/vagrant2019-11-01-17-54-59.png)
 
+![command output](./resources/images/packaging.png)
 
+* Add Box to Local Vagrant
 
-1.  
-2.  vagrant package --base Ubuntu-DevBox-1804-Default-Gnome3
-3.  
+``` bash
+vagrant box add --name devHowlingSails Ubuntu1804-VirtualBox6-0-6-Tools.box --force
+```
+
+* You are ready to make a new development instance of your new machine
+
+### Make New Instance of this new box
+
+* Create a new Vagrant file
+  
+> Start with a Copy of the vagrant file in this repo and adjust names and configuration to  your liking
+
+* Run Vagrant Up starting at step 9 at the top
