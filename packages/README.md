@@ -33,3 +33,9 @@ apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-conf
 ```bash
 ./.setupUser.sh 
 ```
+
+
+# Vagrant Clip Board
+# IGNORE
+#
+# BaseUbuntu1804-BionicBeaver-Gnome3Base-Dev-Environment
