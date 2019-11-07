@@ -62,7 +62,11 @@ Vagrant.configure("2") do |config|
    config.vm.synced_folder "packages/", "/packages", type: "rsync"
 
    #https://www.vagrantup.com/docs/networking/public_network.html
-   config.vm.network "public_network",  use_dhcp_assigned_default_route: true, bridge: "en0: Wi-Fi (AirPort)"
+   config.vm.network "public_network",   use_dhcp_assigned_default_route: true
+   #config.vm.network "private_network", type: "dhcp", nic_type: "virtio"
+   #config.vm.network "forwarded_port", guest: 22, host: 2222
+
+
 #  
 #   # Basically run bash scripts for most of the common stuff to install. 
 #               Check the .bash_profile --> .bash_system, .bash_command, .bash_installs #interaction with interactive shell 

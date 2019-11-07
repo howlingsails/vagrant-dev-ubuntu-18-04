@@ -13,14 +13,13 @@ A Vagrant configuration for getting a Ubuntu 18.04 UI desktop running in Virtual
 6. Open a command prompt (windows) / terminal (mac)
 7. Clone this repo into your workspace directory
 8. Switch into this directory
-9. Linux/Mac terminal run `vagrant up --debug &> vagrant.log`
-10. Windows Powershell  `vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"`
-11. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
-12. Grap coffee and watch another Howling Sails vblogs :-)
-13. One Completed you'll see "That's All Folks" message in the terminal.
-14. Now switch to Virtual Box and login, User:vagrant Password: vagrant
-15. Login
-16. Open README.md on the box for following steps.
+9. Run Vagrant: Linux/Mac terminal run `vagrant up --debug &> vagrant.log`, Windows Powershell  `vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"`
+10. Watch vagrant run. This will take a long time as it downloads and creates a full development box.
+11. Grap coffee and watch another Howling Sails vblogs :-)
+12. One Completed you'll see "That's All Folks" message in the terminal.
+13. Now switch to Virtual Box and login, User:vagrant Password: vagrant
+14. Login
+15. Open README.md on the box for following steps.
 
 ![SheetShot Vagrant User Logging in to Ubuntu Desktop Clean](./resources/images/ubuntu1804.png)
 
@@ -51,7 +50,12 @@ User and Password are both (vagrant/vagrant).
 2. Enable Bridge Networking
 
 ``` html
-     https://relativkreativ.at/articles/how-to-build-a-vagrant-base-box-from-a-virtualbox-vm
+    https://relativkreativ.at/articles/how-to-build-a-vagrant-base-box-from-a-virtualbox-vm
+```
+* Install Linux Kernal Headers and basic developer tools
+
+``` bash
+    sudo apt-get install linux-headers-$(uname -r) build-essential dkms
 ```
 
 * Install Virtual Box Tools
@@ -59,7 +63,7 @@ User and Password are both (vagrant/vagrant).
 ![Select Insert Addtion iso](./resources/images/guest-additions.png)
 
 * Select Run
-  
+
 ![Run Guest Additions](./resources/images/run-guest-additions.png)
 
 # Set Up SSH Auth
